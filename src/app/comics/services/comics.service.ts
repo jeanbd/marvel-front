@@ -26,4 +26,9 @@ export class ComicsService {
   addComicToFavorite(comic:ComicFavoriteInterface):Observable<ComicFavoriteInterface>{
     return this.httpClient.post<ComicFavoriteInterface>(`${this.baseUrl}/comics/create-favorite`,comic)
   }
+
+  getAllComicsFavorites(id:string):Observable<ComicsInterface[]>{
+    return this.httpClient.get<ComicsInterface[]>(`${this.baseUrl}/comics/comics-favorites/${id}`)
+
+  }
 }

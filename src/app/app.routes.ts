@@ -4,7 +4,7 @@ import { authGuard } from './auth/guards/auth.guard';
 export const routes: Routes = [
     {
         path:'comics-list',
-        loadComponent: () => import('./comics/components/comic-card/comic-card.component').then(c => c.ComicCardComponent ),
+        loadComponent: () => import('./comics/pages/comics-layout/comics-layout.component').then(c => c.ComicsLayoutComponent ),
         canActivate:[authGuard]
     },
 

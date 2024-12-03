@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { TabViewModule } from 'primeng/tabview';
 
@@ -7,6 +7,8 @@ import { ComicsInterface } from '../../interfaces/comics.interface';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../auth/Services/auth.service';
 import { ComicFavoriteInterface } from '../../interfaces/comic-favorite.interface';
+
+import { initFlowbite } from 'flowbite';
 @Component({
   selector: 'comic-card',
   standalone: true,
@@ -22,11 +24,13 @@ export class ComicCardComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    
-    this.getAllComics()
+    // initFlowbite();
+    // this.getAllComics();
+    // this.getAllComicsFavorites();
   }
 
-  comics: ComicsInterface[] = []
+  @Input() comics: ComicsInterface[] = []
+  // @Input() favoriteComics:ComicsInterface[] = []
 
   getAllComics(){
     this.comicsService.getAllComics().subscribe(
@@ -38,9 +42,6 @@ export class ComicCardComponent implements OnInit {
   }
 
   addComicToFavorite(id:number){
-    // console.log('este es el id del comic',id)
-    // console.log('este es el usuario logeado',this.authService.getCurrentUser())
-
     const user = this.authService.getCurrentUser();
 
     const comicFavorite:ComicFavoriteInterface = {
@@ -51,6 +52,15 @@ export class ComicCardComponent implements OnInit {
     this.comicsService.addComicToFavorite(comicFavorite).subscribe(
       response =>{
         console.log('EL FAVORITO CREADO',response)
+      }
+    )
+  }
+
+  getAllComicsFavorites(){
+    const userId = this.authService.getCurrentUser()?._id;
+    this.comicsService.getAllComicsFavorites(userId!).subscribe(
+      response =>{
+        console.log('ESTO ES LO QUE LLEGA TODOS LOS FAVORITOS',response)
       }
     )
   }
