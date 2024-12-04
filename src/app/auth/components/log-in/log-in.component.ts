@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../Services/auth.service';
 import { LoginInterface } from '../../interfaces/login.interface';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-log-in',
+  selector: 'log-in',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.css'
 })
@@ -19,8 +20,8 @@ export class LogInComponent {
     private fb:FormBuilder
   ){
     this.loginForm = fb.group({
-      username:[''],
-      password:['']
+      username:['',[Validators.required]],
+      password:['',[Validators.required]]
     })
   }
 

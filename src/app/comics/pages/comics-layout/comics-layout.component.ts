@@ -5,11 +5,12 @@ import { ComicCardComponent } from "../../components/comic-card/comic-card.compo
 import { ComicsService } from '../../services/comics.service';
 import { ComicsInterface } from '../../interfaces/comics.interface';
 import { AuthService } from '../../../auth/Services/auth.service';
+import { NavBarComponent } from "../../../shared/components/nav-bar/nav-bar.component";
 
 @Component({
   selector: 'app-comics-layout',
   standalone: true,
-  imports: [ComicCardComponent],
+  imports: [ComicCardComponent, NavBarComponent],
   templateUrl: './comics-layout.component.html',
   styleUrl: './comics-layout.component.css'
 })

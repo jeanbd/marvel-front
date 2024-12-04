@@ -30,7 +30,7 @@ export const authGuard: CanActivateFn = () => {
     tap(isAuthenticated => {
       console.log('entro al tap')
       console.log('esta auth?',isAuthenticated)
-      if(!isAuthenticated) router.navigate(['/log-in'])
+      if(!isAuthenticated) router.navigate(['/home'])
     })
   );
 

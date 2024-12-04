@@ -1,28 +1,57 @@
-<section class="h-full lg:pt-36">
-    <div class="flex flex-col border border-black  rounded-lg lg:w-[500px] lg:mx-auto">
-        <p class="self-center font-bold text-3xl mt-3">Sign Up</p>
 
-        <form [formGroup]="signForm" (ngSubmit)="onSubmit()" class="w-full p-10">
+    <div class="flex flex-col pt-5">
+        <!-- <p class="self-center font-bold text-3xl mt-3">Sign Up</p> -->
 
-            <div class="flex flex-col mb-10">
+        <img src="logo.png" alt="logo" class="w-36 self-center">
+
+        <form [formGroup]="signForm" (ngSubmit)="onSubmit()" class="self-center">
+
+            <div class="flex flex-col mb-5">
                 <label for="name">Name</label>
-                <input id="name" type="text" class="border border-black rounded-lg px-2" formControlName="name"/>
+                <input id="name" type="text" class="border rounded-lg px-2 h-7 w-[100%]" formControlName="name" 
+                [ngClass]="{'border-red-700':signForm.controls['name'].errors && signForm.controls['name'].touched}"/>
+                @if (signForm.controls['name'].errors && signForm.controls['name'].touched) {
+                    <small class="text-red-700">Name is requiered</small>
+                }
             </div>
             
-            <div class="flex flex-col mb-10">
+            <div class="flex flex-col mb-5">
                 <label for="user-name">Username</label>
-                <input id="user-name" type="text" class="border border-black rounded-lg px-2" formControlName="username"/>
+                <input id="user-name" type="text" class="border rounded-lg px-2 h-7 w-[100%]" formControlName="username"
+                [ngClass]="{'border-red-700':signForm.controls['username'].errors && signForm.controls['username'].touched}"/>
+                @if (signForm.controls['username'].errors && signForm.controls['username'].touched) {
+                    <small class="text-red-700">Username is requiered</small>
+                }
+                @if (signForm.controls['username'].errors?.['minlength'] && signForm.controls['username'].touched) {
+                    <small class="text-red-700">Username must have minimum 4 characters</small>
+                }
+
+                
+                
             </div>
             
     
-            <div class="flex flex-col mb-10">
+            <div class="flex flex-col mb-5">
                 <label for="password">Password</label>
-                <input id="password" type="password" class="border border-black rounded-lg px-2" formControlName="password"/>
+                <input id="password" type="password" class="border rounded-lg px-2 h-7 w-[100%]" formControlName="password"
+                [ngClass]="{'border-red-700':signForm.controls['password'].errors && signForm.controls['password'].touched}"/>
+                @if (signForm.controls['password'].errors && signForm.controls['password'].touched) {
+                    <small class="text-red-700">Password is requiered</small>
+                }
             </div>
 
-            <button class="w-full bg-gradient-to-r from-white via-pink-500 to-red-500 rounded-xl">Sign up</button>
+            <div class="flex flex-col mb-5">
+                <label for="confirm-password">Confirm password</label>
+                <input id="confirm-password" type="password" class="border rounded-lg px-2 h-7 w-[100%]" formControlName="confirmPassword"
+                [ngClass]="{'border-red-700':signForm.controls['confirmPassword'].errors && signForm.controls['confirmPassword'].touched}"/>
+                @if (signForm.controls['confirmPassword'].errors && signForm.controls['confirmPassword'].touched) {
+                    <small class="text-red-700">Password confirmation is required</small>
+                }
+            </div>
+
+            <button class="w-[100%] h-7 bg-red-500 rounded-xl" 
+            [ngClass]="{'bg-red-500':signForm.valid, 'bg-slate-300':signForm.invalid}">Sign up</button>
             
         </form>
     </div>
     
-</section>

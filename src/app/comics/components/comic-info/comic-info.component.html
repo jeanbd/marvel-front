@@ -1,4 +1,16 @@
-<section class="pr-5">
+<nav-bar />
+<section class="px-7 py-4">
+    <div class="flex flex-row gap-2 cursor-pointer" routerLink="/comics-list">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+            class="size-6 mb-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
+        </svg>
+
+        <p>Go to comics list</p>
+    </div>
+
+
+
     <div class="flex flex-row">
 
         <div class="flex flex-grow w-[30%] ">
@@ -85,65 +97,125 @@
 
     </div>
 
-    <div class="flex flex-row gap-4 justify-between px-5">
+    <div class="flex flex-row justify-center mb-4 border-b border-gray-200 dark:border-gray-700">
+        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-styled-tab"
+            data-tabs-toggle="#default-styled-tab-content"
+            data-tabs-active-classes="text-purple-600 hover:text-purple-600 dark:text-purple-500 dark:hover:text-purple-500 border-purple-600 dark:border-purple-500"
+            data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300"
+            role="tablist">
+            <li class="me-2" role="presentation">
+                <button class="inline-block p-4 border-b-2 rounded-t-lg" id="creators-styled-tab"
+                    data-tabs-target="#styled-creators" type="button" role="tab" aria-controls="creators"
+                    aria-selected="false">
+                    Creators
+                </button>
+            </li>
+            <li class="me-2" role="presentation">
+                <button
+                    class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    id="stories-styled-tab" data-tabs-target="#styled-stories" type="button" role="tab"
+                    aria-controls="stories" aria-selected="false">
+                    Stories
+                </button>
+            </li>
+            <li class="me-2" role="presentation">
+                <button
+                    class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    id="series-styled-tab" data-tabs-target="#styled-series" type="button" role="tab"
+                    aria-controls="series" aria-selected="false">
+                    Series
+                </button>
+            </li>
+            <li class="me-2" role="presentation">
+                <button
+                    class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                    id="variants-styled-tab" data-tabs-target="#styled-variants" type="button" role="tab"
+                    aria-controls="variants" aria-selected="false">
+                    Variants
+                </button>
+            </li>
 
-        <!-- CREATORS -->
-        @if (comicInfo[0].creators.items.length >0) {
-        <div class="flex flex-col">
-            <p class="font-semibold">Creators</p>
+        </ul>
+    </div>
 
-            @for (creator of comicInfo[0].creators.items; track $index) {
+    <div id="default-styled-tab-content">
+        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-creators" role="tabpanel"
+            aria-labelledby="creators-tab">
+            <!-- CREATORS -->
+            @if (comicInfo[0].creators.items.length >0) {
+            <div class="flex flex-wrap gap-10">
+                <!-- <p class="font-semibold">Creators</p> -->
 
-            <p>{{creator.name}} ({{creator.role}})</p>
-            }
+                @for (creator of comicInfo[0].creators.items; track $index) {
 
-        </div>
-        }@else {
-        <p>This comic hasn't any creator</p>
-        }
+                <!-- <p>{{creator.name}} ({{creator.role}})</p> -->
+                <ul>
+                    <li class="list-disc">{{creator.name}} ({{creator.role}})</li>
+                </ul>
+                }
 
-
-        <!-- STORIES -->
-        @if (comicInfo[0].stories.items.length>0) {
-        <div class="flex flex-col">
-            <p class="font-semibold">Stories</p>
-
-            @for (storie of comicInfo[0].stories.items; track $index) {
-
-            <p>{{storie.name}} ({{storie.type}})</p>
-            }
-        </div>
-        }@else {
-        <p>This comic hasn't any storie</p>
-        }
-
-
-        <!-- SERIES -->
-        <div class="flex flex-col">
-            <p class="font-semibold">Series</p>
-
-            @if (comicInfo[0].series.name) {
-
-            <p>{{comicInfo[0].series.name}}</p>
+            </div>
             }@else {
-            <p>This comic hasn't any serie</p>
+            <p>This comic hasn't any creator</p>
             }
-
         </div>
 
-        <!-- VARIANTS -->
+        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-stories" role="tabpanel"
+            aria-labelledby="stories-tab">
+            <!-- STORIES -->
+            @if (comicInfo[0].stories.items.length>0) {
+            <div class="flex flex-wrap gap-10">
+                <!-- <p class="font-semibold">Stories</p> -->
 
-        <div class="flex flex-col">
-            <p class="font-semibold">Variants</p>
+                @for (storie of comicInfo[0].stories.items; track $index) {
+
+                <!-- <p>{{storie.name}} ({{storie.type}})</p> -->
+                <ul>
+                    <li class="list-disc">{{storie.name}} ({{storie.type}})</li>
+                </ul>
+                }
+            </div>
+            }@else {
+            <p>This comic hasn't any storie</p>
+            }
+        </div>
+
+        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-series" role="tabpanel"
+            aria-labelledby="series-tab">
+            <!-- SERIES -->
+            <div class="flex flex-wrap gap-10">
+                <!-- <p class="font-semibold">Series</p> -->
+
+                @if (comicInfo[0].series.name) {
+
+                <p>{{comicInfo[0].series.name}}</p>
+                }@else {
+                <p>This comic hasn't any serie</p>
+                }
+
+            </div>
+        </div>
+
+        <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-variants" role="tabpanel" aria-labelledby="variants-tab">
+            <!-- VARIANTS -->
+
+        <div class="flex flex-wrap gap-10">
+            <!-- <p class="font-semibold">Variants</p> -->
             @if (comicInfo[0].variants.length>0) {
             @for (variant of comicInfo[0].variants; track $index) {
 
-            <p>{{variant.name}}</p>
+            <!-- <p>{{variant.name}}</p> -->
+             <ul>
+                <li class="list-disc">{{variant.name}}</li>
+             </ul>
             }
             }@else {
-                <p>This comic hasn't any variant</p>
+            <p>This comic hasn't any variant</p>
             }
         </div>
-
+        </div>
     </div>
+
+    <!-- <div class="flex flex-row gap-4 justify-between px-5">
+    </div> -->
 </section>

@@ -6,7 +6,7 @@ import { UserInterface } from '../../../auth/interfaces/user.interface';
 @Component({
   selector: 'nav-bar',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })

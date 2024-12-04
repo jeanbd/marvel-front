@@ -62,6 +62,6 @@ export class AuthService {
     console.log('entro al logout de authservice')
     this.user=undefined;
     localStorage.clear();
-    this.router.navigate(['/log-in'])
+    this.router.navigate(['/home'])
   }
 }

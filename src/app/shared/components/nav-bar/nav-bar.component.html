@@ -2,25 +2,28 @@
 
     <div class="">
         <img src="logo.png" class="w-28" alt="logo">
+        
     </div>
 
     @if (UserLogged) {
         <div class="flex flex-row gap-10">
 
-            <p class="font-semibold">Welcome {{UserLogged.name}}!</p>
+            <p class="font-semibold text-xl">Welcome {{UserLogged.name}}!</p>
 
-            <div class="flex flex-row gap-2 cursor-pointer border border-black rounded-xl px-3" (click)="logOut()">
-                <p>Log out</p>
+            <div class="flex flex-row gap-2 cursor-pointer border border-black rounded-xl px-3 hover:bg-red-400 hover:text-white transition-all ease-in" 
+            (click)="logOut()">
+                <p class="font-medium">Log out</p>
                 <svg class="w-5" data-slot="icon" data-darkreader-inline-stroke="" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9"></path>
                   </svg>
             </div>
         </div>
-    }@else {
+    }
+    <!-- @else {
 
         <div class="flex flex-row gap-4">
             <a routerLink="/sign-up" class="bg-red-200 rounded-xl py-1 px-3 hover:bg-red-600 cursor-pointer">Sign Up</a>
             <a routerLink="/log-in" class="bg-red-200 rounded-xl py-1 px-3 hover:bg-red-600 cursor-pointer">Log In</a>
         </div>
-    }
+    } -->
 </div>

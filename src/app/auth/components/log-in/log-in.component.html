@@ -1,23 +1,35 @@
-<section class="h-full lg:pt-36">
-    <div class="flex flex-col border border-black  rounded-lg lg:w-[500px] lg:mx-auto">
-        <p class="self-center font-bold text-3xl mt-3">Log-in</p>
 
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-full p-10">
+    <div class="flex flex-col pt-5">
+        <!-- <p class="self-center font-bold text-3xl mt-3">Log-in</p> -->
+
+        <img src="logo.png" alt="logo" class="w-36 self-center">
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="self-center">
             
-            <div class="flex flex-col mb-10">
+            <div class="flex flex-col mb-5">
                 <label for="user-name">Username</label>
-                <input id="user-name" type="text" class="border border-black rounded-lg px-2" formControlName="username" />
+                <input id="user-name" type="text" class="border border-black rounded-lg px-2 h-7 w-[100%]" formControlName="username" 
+                [ngClass]="{'border-red-700':loginForm.controls['username'].errors && loginForm.controls['username'].touched}"/>
+                @if (loginForm.controls['username'].errors && loginForm.controls['username'].touched) {
+                    <small class="text-red-700">Username is requiered</small>
+                }
             </div>
             
     
-            <div class="flex flex-col mb-10">
+            <div class="flex flex-col mb-5">
                 <label for="password">Password</label>
-                <input id="password" type="password" class="border border-black rounded-lg px-2" formControlName="password"/>
+                <input id="password" type="password" class="border border-black rounded-lg px-2 h-7 w-[100%]" formControlName="password"
+                [ngClass]="{'border-red-700':loginForm.controls['password'].errors && loginForm.controls['password'].touched}"/>
+                @if (loginForm.controls['password'].errors && loginForm.controls['password'].touched) {
+                    <small class="text-red-700">Password is requiered</small>
+                }
             </div>
 
-            <button class="w-full bg-gradient-to-r from-white via-pink-500 to-red-500 rounded-xl">Log-in</button>
+            <button class="w-[100%] h-7 bg-red-500 rounded-lg mt-5"
+            [ngClass]="{'bg-red-500':loginForm.valid, 'bg-slate-300':loginForm.invalid}">
+            Log-in
+        </button>
             
         </form>
     </div>
     
-</section>

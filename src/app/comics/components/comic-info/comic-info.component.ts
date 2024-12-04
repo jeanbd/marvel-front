@@ -3,11 +3,15 @@ import { ComicsInterface } from '../../interfaces/comics.interface';
 
 import { TooltipModule } from 'primeng/tooltip';
 import { ComicsService } from '../../services/comics.service';
+import { NavBarComponent } from "../../../shared/components/nav-bar/nav-bar.component";
+
+import { initFlowbite } from 'flowbite';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'comic-info',
   standalone: true,
-  imports: [TooltipModule],
+  imports: [TooltipModule, NavBarComponent, RouterLink],
   templateUrl: './comic-info.component.html',
   styleUrl: './comic-info.component.css'
 })
@@ -18,6 +22,7 @@ export class ComicInfoComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+    initFlowbite();
     this.getComicInfo(this.id)
   }
 
