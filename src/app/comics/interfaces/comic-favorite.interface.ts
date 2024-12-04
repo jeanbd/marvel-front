@@ -1,4 +1,4 @@
 export interface ComicFavoriteInterface{
-    comicid:number;
+    comicId:number;
     userId:string;
 }

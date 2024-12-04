@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { ComicsInterface } from '../interfaces/comics.interface';
 import { ComicFavoriteInterface } from '../interfaces/comic-favorite.interface';
 
@@ -24,7 +24,9 @@ export class ComicsService {
   }
 
   addComicToFavorite(comic:ComicFavoriteInterface):Observable<ComicFavoriteInterface>{
-    return this.httpClient.post<ComicFavoriteInterface>(`${this.baseUrl}/comics/create-favorite`,comic)
+    return this.httpClient.post<ComicFavoriteInterface>(`${this.baseUrl}/comics/create-favorite`,comic).pipe(
+      catchError( error => of(error))
+    )
   }
 
   getAllComicsFavorites(id:string):Observable<ComicsInterface[]>{

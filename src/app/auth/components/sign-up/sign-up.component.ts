@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../Services/auth.service';
 import { CommonModule } from '@angular/common';
 
+import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'sign-up',
   standalone: true,
@@ -20,7 +23,8 @@ export class SignUpComponent {
 
  constructor(
   private fb : FormBuilder,
-  private authService: AuthService
+  private authService: AuthService,
+  private router:Router
  ){
   this.signForm = fb.group({
     name:['', [Validators.required]],
@@ -31,17 +35,45 @@ export class SignUpComponent {
  }
 
  onSubmit(){
-
-  console.log('formulario invalid:', this.signForm.controls['username'].errors)
-
-  // const {confirmPassword, ...dataUser} = this.signForm.value
+  const {confirmPassword, ...dataUser} = this.signForm.value
   
-  // this.authService.signUp(dataUser).subscribe(
-  //   response =>{
-  //     console.log('este es el response del post',response)
-  //   }
-  // )
+  this.authService.signUp(dataUser).subscribe(
+    response =>{
+      if(response == null || response == undefined){
+        this.showAlert(false)
+        return
+      }
+      this.showAlert(true)
+      // this.router.navigate(['/home'])
+      this.signForm.reset();
+    }
+  )
  }
+
+ showAlert(succes : boolean){
+
+  if(succes == true){
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Sign up succesfull",
+      showConfirmButton: false,
+      timer: 1800
+    });
+  }
+
+  if(succes == false){
+    Swal.fire({
+      position: "top-end",
+      icon: "error",
+      title: "Cannot sign up in this moment",
+      showConfirmButton: false,
+      timer: 1800
+    });
+  }
+
+  
+}
 
  
   

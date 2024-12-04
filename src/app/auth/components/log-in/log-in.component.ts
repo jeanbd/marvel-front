@@ -5,6 +5,8 @@ import { LoginInterface } from '../../interfaces/login.interface';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+import Swal from 'sweetalert2'
+
 @Component({
   selector: 'log-in',
   standalone: true,
@@ -28,9 +30,38 @@ export class LogInComponent {
   onSubmit(){
     this.authService.logIn(this.loginForm.value).subscribe(
       response =>{
-        console.log('esto es lo que devuelve',response)
+        if(!response._id){
+          this.showAlert(false)
+          return
+        }
         this.router.navigate(['/comics-list'])
       }
     )
   }
+
+  showAlert(succes : boolean){
+
+    if(succes == true){
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Login succesfull",
+        showConfirmButton: false,
+        timer: 1800
+      });
+    }
+  
+    if(succes == false){
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Incorrect credentials",
+        showConfirmButton: false,
+        timer: 1800
+      });
+    }
+  
+    
+  }
+  
 }

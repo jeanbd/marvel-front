@@ -28,13 +28,13 @@
 
 <div id="default-styled-tab-content">
 
-    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="hidden p-4 rounded-lg" id="styled-profile" role="tabpanel" aria-labelledby="profile-tab">
         <comic-card [comics]="comics"/>
     </div>
 
-    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-dashboard" role="tabpanel"
+    <div class="hidden p-4 rounded-lg" id="styled-dashboard" role="tabpanel"
         aria-labelledby="dashboard-tab">
         <!-- AQUI VA LOS FAVORITOS -->
-        <comic-card [comics]="favoriteComics"/>
+        <comic-card [comics]="favoriteComics" [showFavoriteButton]="false"/>
     </div>
 </div>

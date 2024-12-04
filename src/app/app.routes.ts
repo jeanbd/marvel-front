@@ -5,6 +5,11 @@ import { AuthLayoutComponent } from './auth/pages/auth-layout/auth-layout.compon
 
 export const routes: Routes = [
     {
+        path:'',
+        redirectTo:'comics-list',
+        pathMatch:'full'
+    },
+    {
         path:'home',
         component:AuthLayoutComponent
     },

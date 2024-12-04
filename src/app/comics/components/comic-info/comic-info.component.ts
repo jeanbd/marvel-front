@@ -361,7 +361,6 @@ export class ComicInfoComponent implements OnInit {
     this.comicsService.getComicInfo(id).subscribe(
       response => {
         this.comicInfo=response
-        console.log('este es el response',this.comicInfo)
       }
     )
   }

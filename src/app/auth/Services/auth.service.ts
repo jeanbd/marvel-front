@@ -40,15 +40,13 @@ export class AuthService {
           
         }
       ),
+      catchError(err => of(err))
     )
   };
 
   checkAuth():Observable<boolean>{
-    console.log('entro al checkaut')
     if(!localStorage.getItem('session-user-username')) return of( false )
     const username = localStorage.getItem('session-user-username')
-
-    console.log('este es el username',username)
 
     return this.httpClient.get<UserInterface>(`${this.baseUrl}/users/${username}`)
     .pipe(
@@ -59,7 +57,6 @@ export class AuthService {
   }
 
   logOut(){
-    console.log('entro al logout de authservice')
     this.user=undefined;
     localStorage.clear();
     this.router.navigate(['/home'])
