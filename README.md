@@ -21,6 +21,7 @@ ng serve
 Luego dirigirse a http://localhost:4200/
 ```
 
-## IMPORTANTE
+#IMPORTANTE
 
-# Para que el servidor este en funcionamiento, asegurar de tener el puerto 4200 libre de uso
+## Para que el servidor este en funcionamiento, asegurar de tener el puerto 4200 libre de uso
+## Es preferible contar con la ultima version de Node (Nodejs 22)
